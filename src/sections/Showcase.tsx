@@ -6,21 +6,23 @@ import {
   DashboardMockup,
   ProjectsMockup,
 } from '../components/ProcessMockup'
+import { useT } from '../i18n'
 
 export default function Showcase() {
+  const t = useT()
   return (
     <section id="showcase" className="relative py-24 sm:py-32">
       <Container size="wide">
         <SectionHeading
-          eyebrow="Inside Processly"
+          eyebrow={t.showcase.eyebrow}
           title={
             <>
-              The same model,{' '}
+              {t.showcase.titleA}{' '}
               <br className="hidden sm:block" />
-              wherever you look.
+              {t.showcase.titleB}
             </>
           }
-          description="From the canvas to the dashboard to the read-only public link, Processly keeps a single shape: steps with status, owners, and history."
+          description={t.showcase.description}
         />
 
         <motion.div
@@ -33,18 +35,16 @@ export default function Showcase() {
           <motion.figure variants={fadeUp} className="space-y-5">
             <DashboardMockup />
             <figcaption className="px-1 text-sm leading-relaxed text-ink-600">
-              <span className="font-medium text-ink-900">Project view.</span>{' '}
-              The live timeline of a single instance — completed, in
-              progress, and pending steps with their owners and deadlines.
+              <span className="font-medium text-ink-900">{t.showcase.caption1Lead}</span>{' '}
+              {t.showcase.caption1}
             </figcaption>
           </motion.figure>
 
           <motion.figure variants={fadeUp} className="space-y-5">
             <ProjectsMockup />
             <figcaption className="px-1 text-sm leading-relaxed text-ink-600">
-              <span className="font-medium text-ink-900">Projects index.</span>{' '}
-              Everything currently running across your organisation, scoped
-              to what each member is involved in.
+              <span className="font-medium text-ink-900">{t.showcase.caption2Lead}</span>{' '}
+              {t.showcase.caption2}
             </figcaption>
           </motion.figure>
         </motion.div>

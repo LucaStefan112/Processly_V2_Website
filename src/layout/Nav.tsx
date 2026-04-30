@@ -4,18 +4,21 @@ import { AnimatePresence, motion } from 'framer-motion'
 import Container from '../components/Container'
 import Logo from '../components/Logo'
 import Button from '../components/Button'
-
-const links = [
-  { href: '#problem', label: 'Problem' },
-  { href: '#solution', label: 'Solution' },
-  { href: '#features', label: 'Features' },
-  { href: '#how-it-works', label: 'How it works' },
-  { href: '#use-cases', label: 'Use cases' },
-]
+import LanguageToggle from '../components/LanguageToggle'
+import { useT } from '../i18n'
 
 export default function Nav() {
+  const t = useT()
   const [scrolled, setScrolled] = useState(false)
   const [open, setOpen] = useState(false)
+
+  const links = [
+    { href: '#problem', label: t.nav.problem },
+    { href: '#solution', label: t.nav.solution },
+    { href: '#features', label: t.nav.features },
+    { href: '#how-it-works', label: t.nav.howItWorks },
+    { href: '#use-cases', label: t.nav.useCases },
+  ]
 
   useEffect(() => {
     const onScroll = () => setScrolled(window.scrollY > 12)
@@ -41,37 +44,41 @@ export default function Nav() {
     >
       <Container size="wide">
         <div className="flex h-16 items-center justify-between sm:h-[72px]">
-          <a href="#top" className="flex items-center" aria-label="Processly home">
+          <a href="#top" className="flex items-center" aria-label={t.nav.home}>
             <Logo />
           </a>
 
-          <nav className="hidden items-center gap-1 md:flex">
+          <nav className="hidden items-center gap-1 lg:flex">
             {links.map((link) => (
               <a
                 key={link.href}
                 href={link.href}
-                className="rounded-full px-3.5 py-2 text-sm text-ink-600 transition-colors hover:text-ink-950"
+                className="whitespace-nowrap rounded-full px-3.5 py-2 text-sm text-ink-600 transition-colors hover:text-ink-950"
               >
                 {link.label}
               </a>
             ))}
           </nav>
 
-          <div className="hidden items-center gap-2 md:flex">
+          <div className="hidden items-center gap-3 lg:flex">
+            <LanguageToggle />
             <Button as="a" href="#cta" variant="primary" size="sm" withArrow>
-              Get started
+              {t.nav.getStarted}
             </Button>
           </div>
 
-          <button
-            type="button"
-            onClick={() => setOpen((v) => !v)}
-            aria-label={open ? 'Close menu' : 'Open menu'}
-            aria-expanded={open}
-            className="flex h-10 w-10 items-center justify-center rounded-full text-ink-800 transition hover:bg-ink-100 md:hidden"
-          >
-            {open ? <X className="h-5 w-5" /> : <Menu className="h-5 w-5" />}
-          </button>
+          <div className="flex items-center gap-2 lg:hidden">
+            <LanguageToggle />
+            <button
+              type="button"
+              onClick={() => setOpen((v) => !v)}
+              aria-label={open ? t.nav.closeMenu : t.nav.openMenu}
+              aria-expanded={open}
+              className="flex h-10 w-10 items-center justify-center rounded-full text-ink-800 transition hover:bg-ink-100"
+            >
+              {open ? <X className="h-5 w-5" /> : <Menu className="h-5 w-5" />}
+            </button>
+          </div>
         </div>
       </Container>
 
@@ -82,7 +89,7 @@ export default function Nav() {
             animate={{ opacity: 1, y: 0 }}
             exit={{ opacity: 0, y: -8 }}
             transition={{ duration: 0.2 }}
-            className="border-t border-ink-200/70 bg-ink-50/95 backdrop-blur-xl md:hidden"
+            className="border-t border-ink-200/70 bg-ink-50/95 backdrop-blur-xl lg:hidden"
           >
             <Container size="wide" className="py-6">
               <nav className="flex flex-col gap-1">
@@ -106,7 +113,7 @@ export default function Nav() {
                     onClick={() => setOpen(false)}
                     className="w-full"
                   >
-                    Get started
+                    {t.nav.getStarted}
                   </Button>
                 </div>
               </nav>

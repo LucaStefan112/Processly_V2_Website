@@ -3,8 +3,10 @@ import { Sparkles } from 'lucide-react'
 import Container from '../components/Container'
 import Button from '../components/Button'
 import { EditorMockup } from '../components/ProcessMockup'
+import { useT } from '../i18n'
 
 export default function Hero() {
+  const t = useT()
   return (
     <section
       id="top"
@@ -36,7 +38,7 @@ export default function Hero() {
             className="inline-flex items-center gap-2 rounded-full border border-ink-200 bg-white/70 px-3.5 py-1.5 text-xs font-medium tracking-tight text-ink-700 backdrop-blur-sm"
           >
             <Sparkles className="h-3.5 w-3.5 text-iris-500" />
-            <span>Process &amp; project orchestration</span>
+            <span>{t.hero.badge}</span>
           </motion.div>
 
           <motion.h1
@@ -45,10 +47,10 @@ export default function Hero() {
             transition={{ duration: 0.8, delay: 0.05, ease: [0.22, 1, 0.36, 1] }}
             className="mt-6 text-balance text-[clamp(2.6rem,7vw,5.4rem)] font-medium leading-[0.98] tracking-tightest text-ink-950"
           >
-            Design your work once.
+            {t.hero.titleA}
             <br />
             <span className="font-serif italic font-normal text-iris-600">
-              Run it forever.
+              {t.hero.titleB}
             </span>
           </motion.h1>
 
@@ -58,9 +60,7 @@ export default function Hero() {
             transition={{ duration: 0.7, delay: 0.2, ease: [0.22, 1, 0.36, 1] }}
             className="mx-auto mt-7 max-w-2xl text-pretty text-base leading-relaxed text-ink-600 sm:text-lg"
           >
-            Processly turns messy, repeatable work into visual processes you
-            can launch on demand. Define a workflow once — then generate
-            projects from it with one click, on a schedule, or both.
+            {t.hero.body}
           </motion.p>
 
           <motion.div
@@ -70,10 +70,10 @@ export default function Hero() {
             className="mt-10 flex flex-col items-center justify-center gap-3 sm:flex-row"
           >
             <Button as="a" href="#how-it-works" variant="primary" size="lg" withArrow>
-              See it in motion
+              {t.hero.ctaPrimary}
             </Button>
             <Button as="a" href="#features" variant="secondary" size="lg">
-              Read the features
+              {t.hero.ctaSecondary}
             </Button>
           </motion.div>
         </div>

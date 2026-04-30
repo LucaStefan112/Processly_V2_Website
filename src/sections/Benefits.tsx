@@ -2,36 +2,20 @@ import { motion } from 'framer-motion'
 import Container from '../components/Container'
 import SectionHeading from '../components/SectionHeading'
 import { fadeUp, stagger, viewportOnce } from '../lib/motion'
-
-const stats = [
-  {
-    value: 'Onboarding',
-    label: 'as a working system',
-    body: 'New hires inherit institutional knowledge by running the workflow, not by reading a wiki page that was last updated two reorgs ago.',
-  },
-  {
-    value: 'Ownership',
-    label: 'baked into every step',
-    body: 'Every step has a name on it; every project has a responsible party. Accountability is structural, not aspirational.',
-  },
-  {
-    value: 'Visibility',
-    label: 'always on, by default',
-    body: 'A live dashboard of everything running, everything late, and everything up next. No more cross-team status meetings.',
-  },
-]
+import { useT } from '../i18n'
 
 export default function Benefits() {
+  const t = useT()
   return (
     <section id="benefits" className="relative py-24 sm:py-32">
       <Container size="wide">
         <SectionHeading
-          eyebrow="Outcomes"
+          eyebrow={t.benefits.eyebrow}
           title={
             <>
-              What changes when{' '}
+              {t.benefits.titleA}{' '}
               <br className="hidden sm:block" />
-              the work runs itself.
+              {t.benefits.titleB}
             </>
           }
         />
@@ -43,7 +27,7 @@ export default function Benefits() {
           variants={stagger(0.1)}
           className="mt-16 grid gap-px overflow-hidden rounded-2xl bg-ink-200/70 ring-1 ring-ink-200/80 md:grid-cols-3"
         >
-          {stats.map((s) => (
+          {t.benefits.items.map((s) => (
             <motion.div
               key={s.value}
               variants={fadeUp}

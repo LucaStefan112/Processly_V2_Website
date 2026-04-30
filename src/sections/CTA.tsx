@@ -2,8 +2,10 @@ import { motion } from 'framer-motion'
 import Container from '../components/Container'
 import Button from '../components/Button'
 import { fadeUp, stagger, viewportOnce } from '../lib/motion'
+import { useT } from '../i18n'
 
 export default function CTA() {
+  const t = useT()
   return (
     <section id="cta" className="relative py-24 sm:py-32">
       <Container size="wide">
@@ -38,34 +40,33 @@ export default function CTA() {
               variants={fadeUp}
               className="text-xs font-medium uppercase tracking-[0.18em] text-iris-300"
             >
-              Make work repeatable
+              {t.cta.eyebrow}
             </motion.p>
             <motion.h2
               variants={fadeUp}
               className="mt-5 text-balance text-4xl font-medium leading-[1.05] tracking-tight sm:text-5xl md:text-[56px]"
             >
-              Spin up your first process.
+              {t.cta.titleA}
               <br />
               <span className="font-serif italic font-normal text-iris-300">
-                Watch the rest run itself.
+                {t.cta.titleB}
               </span>
             </motion.h2>
             <motion.p
               variants={fadeUp}
               className="mx-auto mt-6 max-w-xl text-pretty text-base leading-relaxed text-ink-300"
             >
-              Sketch a workflow, generate your first project, and let
-              Processly handle deadlines, owners, and status from there.
+              {t.cta.body}
             </motion.p>
             <motion.div
               variants={fadeUp}
               className="mt-10 flex flex-col items-center justify-center gap-3 sm:flex-row"
             >
               <Button as="a" href="#" variant="invert" size="lg" withArrow>
-                Get started
+                {t.cta.ctaPrimary}
               </Button>
               <Button as="a" href="#features" variant="subtle" size="lg">
-                Read the docs
+                {t.cta.ctaSecondary}
               </Button>
             </motion.div>
           </div>

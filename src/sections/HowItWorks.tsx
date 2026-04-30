@@ -2,31 +2,10 @@ import { motion } from 'framer-motion'
 import Container from '../components/Container'
 import SectionHeading from '../components/SectionHeading'
 import { fadeUp, stagger, viewportOnce } from '../lib/motion'
-
-const steps = [
-  {
-    n: '01',
-    title: 'Design',
-    body: 'Sketch your workflow on a visual canvas. Each step is a node; connect them however your team actually works — branches, joins, parallel paths welcome.',
-  },
-  {
-    n: '02',
-    title: 'Define',
-    body: 'For each step, declare the fields it collects, who is responsible, and roughly how long it takes. The schema becomes your source of truth.',
-  },
-  {
-    n: '03',
-    title: 'Generate',
-    body: 'When the work needs to happen, generate a project. Once. On demand. Or on a recurring schedule that respects working hours.',
-  },
-  {
-    n: '04',
-    title: 'Run',
-    body: 'Each project tracks its own state. Steps cascade automatically. Owners get pinged. Field values flow downstream. Everyone sees what is next.',
-  },
-]
+import { useT } from '../i18n'
 
 export default function HowItWorks() {
+  const t = useT()
   return (
     <section
       id="how-it-works"
@@ -49,15 +28,15 @@ export default function HowItWorks() {
       <Container size="wide">
         <SectionHeading
           tone="dark"
-          eyebrow="How it works"
+          eyebrow={t.how.eyebrow}
           title={
             <>
-              Four steps to make{' '}
+              {t.how.titleA}{' '}
               <br className="hidden sm:block" />
-              work repeatable.
+              {t.how.titleB}
             </>
           }
-          description="It is the same loop every time: design, define, generate, run. Once you have done it once, every future instance is a click."
+          description={t.how.description}
         />
 
         <div className="relative mt-16">
@@ -74,26 +53,29 @@ export default function HowItWorks() {
             variants={stagger(0.1)}
             className="grid gap-px overflow-hidden rounded-2xl bg-ink-800/80 ring-1 ring-ink-800 md:grid-cols-2 lg:grid-cols-4"
           >
-            {steps.map((s) => (
-              <motion.li
-                key={s.n}
-                variants={fadeUp}
-                className="relative flex flex-col bg-ink-950 p-7 sm:p-8"
-              >
-                <div className="flex items-center gap-3">
-                  <span className="font-mono text-xs tracking-widest text-iris-300">
-                    {s.n}
-                  </span>
-                  <span className="h-px flex-1 bg-ink-800" />
-                </div>
-                <h3 className="mt-6 text-2xl font-medium leading-tight tracking-tight text-ink-50">
-                  {s.title}
-                </h3>
-                <p className="mt-3 text-sm leading-relaxed text-ink-300">
-                  {s.body}
-                </p>
-              </motion.li>
-            ))}
+            {t.how.steps.map((s, i) => {
+              const n = String(i + 1).padStart(2, '0')
+              return (
+                <motion.li
+                  key={s.title}
+                  variants={fadeUp}
+                  className="relative flex flex-col bg-ink-950 p-7 sm:p-8"
+                >
+                  <div className="flex items-center gap-3">
+                    <span className="font-mono text-xs tracking-widest text-iris-300">
+                      {n}
+                    </span>
+                    <span className="h-px flex-1 bg-ink-800" />
+                  </div>
+                  <h3 className="mt-6 text-2xl font-medium leading-tight tracking-tight text-ink-50">
+                    {s.title}
+                  </h3>
+                  <p className="mt-3 text-sm leading-relaxed text-ink-300">
+                    {s.body}
+                  </p>
+                </motion.li>
+              )
+            })}
           </motion.ol>
         </div>
       </Container>
