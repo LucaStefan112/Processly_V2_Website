@@ -14,17 +14,17 @@ export default function Logo({ className = '', variant = 'dark' }: Props) {
         aria-hidden
         className="shrink-0"
       >
-        <circle cx="9" cy="9" r="3" fill="#5B5BD6" />
-        <circle cx="23" cy="9" r="3" fill="currentColor" className={fg} />
-        <circle cx="16" cy="22" r="3" fill="#10B981" />
         <path
-          d="M9 12 L16 19 M23 12 L16 19"
+          d="M9 9 L16 22 M23 9 L16 22"
           stroke="currentColor"
           className={fg}
           strokeWidth="1.6"
           strokeLinecap="round"
           opacity="0.55"
         />
+        <circle cx="9" cy="9" r="3" fill="#5B5BD6" />
+        <circle cx="23" cy="9" r="3" fill="currentColor" className={fg} />
+        <circle cx="16" cy="22" r="3" fill="#10B981" />
       </svg>
       <span className={`text-[17px] font-semibold tracking-tight ${fg}`}>
         Processly
