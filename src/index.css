@@ -1,0 +1,83 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+  html {
+    -webkit-text-size-adjust: 100%;
+    text-rendering: optimizeLegibility;
+    scroll-behavior: smooth;
+  }
+
+  body {
+    font-feature-settings: 'ss01', 'cv11', 'cv02';
+  }
+
+  ::selection {
+    background-color: rgba(91, 91, 214, 0.22);
+    color: #1d1d4d;
+  }
+
+  /* Tighter, editorial heading defaults */
+  h1, h2, h3 {
+    letter-spacing: -0.022em;
+  }
+
+  /* Custom subtle scrollbar */
+  ::-webkit-scrollbar {
+    width: 10px;
+    height: 10px;
+  }
+  ::-webkit-scrollbar-track {
+    background: transparent;
+  }
+  ::-webkit-scrollbar-thumb {
+    background: rgba(10, 10, 9, 0.18);
+    border-radius: 999px;
+  }
+  ::-webkit-scrollbar-thumb:hover {
+    background: rgba(10, 10, 9, 0.32);
+  }
+
+  @media (prefers-reduced-motion: reduce) {
+    html {
+      scroll-behavior: auto;
+    }
+    *, *::before, *::after {
+      animation-duration: 0.01ms !important;
+      animation-iteration-count: 1 !important;
+      transition-duration: 0.01ms !important;
+    }
+  }
+}
+
+@layer utilities {
+  .bg-grid-fade {
+    background-image:
+      linear-gradient(to right, rgba(10, 10, 9, 0.05) 1px, transparent 1px),
+      linear-gradient(to bottom, rgba(10, 10, 9, 0.05) 1px, transparent 1px);
+    background-size: 56px 56px;
+    mask-image: radial-gradient(ellipse at center, black 50%, transparent 85%);
+    -webkit-mask-image: radial-gradient(ellipse at center, black 50%, transparent 85%);
+  }
+
+  .bg-dots-fade {
+    background-image: radial-gradient(circle at 1px 1px, rgba(10, 10, 9, 0.16) 1px, transparent 0);
+    background-size: 22px 22px;
+    mask-image: radial-gradient(ellipse at center, black 30%, transparent 80%);
+    -webkit-mask-image: radial-gradient(ellipse at center, black 30%, transparent 80%);
+  }
+
+  .text-balance {
+    text-wrap: balance;
+  }
+
+  .text-pretty {
+    text-wrap: pretty;
+  }
+
+  /* Soft inner border for cards on light surfaces */
+  .ring-hairline {
+    box-shadow: inset 0 0 0 1px rgba(10, 10, 9, 0.06);
+  }
+}
