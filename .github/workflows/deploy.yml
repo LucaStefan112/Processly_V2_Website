@@ -31,10 +31,6 @@ jobs:
         run: npm ci
 
       - name: Build site
-        env:
-          # Deploy under /<repo-name>/ on github.io.
-          # github.event.repository.name resolves to the repository name at runtime.
-          VITE_BASE: /${{ github.event.repository.name }}/
         run: npm run build
 
       - name: Add SPA 404 fallback
